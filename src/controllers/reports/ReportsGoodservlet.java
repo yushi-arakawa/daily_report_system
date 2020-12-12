@@ -49,7 +49,6 @@ public class ReportsGoodservlet extends HttpServlet {
         g.setEmployee((Employee)request.getSession().getAttribute("login_employee"));
         g.setReport((Report)r);
 
-
         em.getTransaction().begin();
         em.persist(g);
         em.getTransaction().commit();

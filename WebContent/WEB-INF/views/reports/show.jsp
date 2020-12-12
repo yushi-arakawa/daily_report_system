@@ -58,9 +58,9 @@
                         <a href="<c:url value="/reports/good?id=${report.id}" />">この日報にいいねする</a>
                     </p>
                 </c:if>
-                <c:if test"${follow.id != report.employee.id }">
+                <c:if test="${follows_count == 0}">
                     <p>
-                        <a href="<c:url value="/follows/create"/>">この日報を書いた人をフォローする</a>
+                        <a href="<c:url value="/follows/create?id=${report.id}"/>">この日報を書いた人をフォローする</a>
                     </p>
                 </c:if>
             </c:when>

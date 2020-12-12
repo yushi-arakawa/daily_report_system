@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Employee;
 import models.Follow;
+import models.Report;
 import utils.DBUtil;
 
 /**
@@ -35,7 +36,7 @@ public class FollowsCreateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-         Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
+        Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
         Follow f = new Follow();
 
@@ -44,7 +45,7 @@ public class FollowsCreateServlet extends HttpServlet {
         f.setUpdated_at(currentTime);
 
         f.setA_employee((Employee)request.getSession().getAttribute("login_employee"));
-        f.setB_employee((Employee)e);
+        f.setB_employee((Employee)r.getEmployee());
 
         em.getTransaction().begin();
         em.persist(f);

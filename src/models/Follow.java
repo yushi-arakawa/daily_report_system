@@ -15,14 +15,11 @@ import javax.persistence.Table;
 
 @Table(name = "follows")
 @NamedQueries({
-    @NamedQuery(
-            name = "getAllFollows",
-            query = "SELECT f FROM Follow AS f ORDER BY f.id DESC"
-            ),
-    @NamedQuery(
-            name = "getFollowsCount",
-            query = "SELECT COUNT(f) FROM Follow AS f"
-            ),
+        @NamedQuery(name = "getAllFollows", query = "SELECT f FROM Follow AS f ORDER BY f.id DESC"),
+        @NamedQuery(name = "getFollowsCount", query = "SELECT COUNT(f) FROM Follow AS f"),
+        @NamedQuery(name = "getMyFollowAllReports", query = "SELECT r FROM Report AS r, Follow AS f WHERE f.a_employee = :employee AND r.employee.id = f.b_employee.id ORDER BY r.id DESC"),
+        @NamedQuery(name = "getMyFollowReportsCount", query = "SELECT COUNT(r) FROM Report AS r, Follow AS f WHERE f.a_employee = :employee AND r.employee.id = f.b_employee.id"),
+        @NamedQuery(name = "getFollowsAdmin" , query = "SELECT COUNT(f) FROM Follow AS f WHERE f.a_employee = :employee AND f.b_employee = :beEmployee")
 })
 @Entity
 public class Follow {
